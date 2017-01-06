@@ -11,13 +11,11 @@ class DiffString
     const INSERTED = 3;
 
     public $data;
-    public $index;
     public $type;
 
-    public function __construct($data, $index, $type = self::NONE)
+    public function __construct($data, $type = self::NONE)
     {
         $this->data = $data;
-        $this->index = $index;
         $this->type = $type;
     }
 
@@ -41,7 +39,7 @@ class TextDiffer
         $strings2 = $this->split_text($text2);
 
         foreach ($strings2 as $i => $s2) {
-            $result[] = new DiffString($s2, $i);
+            $result[] = new DiffString($s2);
         }
 
         foreach ($strings1 as $i => $s1) {
@@ -63,10 +61,8 @@ class TextDiffer
             }
 
             if ($most_similar['index'] === -1) {
-                $str = new DiffString($s1, $i, DiffString::DELETED);
+                $str = new DiffString($s1, DiffString::DELETED);
                 array_splice($result, $i, 0, [$str]);
-
-                //$result[] = new DiffString($s1, $i, DiffString::DELETED);
             } else {
                 $str = $result[$most_similar['index']];
                 if ($most_similar['percent'] >= self::SIMILAR_PERCENT) {
