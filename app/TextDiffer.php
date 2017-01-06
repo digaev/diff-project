@@ -64,8 +64,7 @@ class TextDiffer
 
             if ($most_similar['index'] === -1) {
                 $str = new DiffString($s1, $i, DiffString::DELETED);
-                $inserted = [$str];
-                array_splice( $result, $i, 0, $inserted );
+                array_splice($result, $i, 0, [$str]);
 
                 //$result[] = new DiffString($s1, $i, DiffString::DELETED);
             } else {
