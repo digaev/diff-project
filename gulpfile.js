@@ -12,13 +12,5 @@ const elixir = require('laravel-elixir')
  */
 
 elixir(mix => {
-  mix.sass('app.scss').webpack('app.js', undefined, undefined, {
-    module: {
-      loaders: [{
-        test: /\.html$/,
-        loader: 'raw',
-        exclude: /node_modules/
-      }]
-    }
-  })
+  mix.sass('app.scss').webpack('app.js')
 })
