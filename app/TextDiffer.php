@@ -12,11 +12,13 @@ class DiffString
 
     public $data;
     public $type;
+    public $oldData;
 
     public function __construct($data, $type = self::NONE)
     {
         $this->data = $data;
         $this->type = $type;
+        $this->oldData = '';
     }
 
     public function similar_to($s)
@@ -69,6 +71,7 @@ class TextDiffer
                     $str->type = DiffString::SIMILAR;
                 } elseif ($most_similar['percent'] >= self::MODIFIED_PERCENT) {
                     $str->type = DiffString::MODIFIED;
+                    $str->oldData = $s1;
                 }
             }
         }
