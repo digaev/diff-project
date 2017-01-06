@@ -31,7 +31,7 @@ class DiffString
 
 class TextDiffer
 {
-    const SIMILAR_PERCENT = 95.0;
+    const SIMILAR_PERCENT = 99.0;
     const MODIFIED_PERCENT = 80.0;
 
     public function compare($text1, $text2)
@@ -59,6 +59,10 @@ class TextDiffer
                 if ($percent >= self::MODIFIED_PERCENT && $percent > $most_similar['percent']) {
                     $most_similar['index'] = $j;
                     $most_similar['percent'] = $percent;
+
+                    if ($percent === 100) {
+                        break;
+                    }
                 }
             }
 
@@ -71,7 +75,7 @@ class TextDiffer
                     $str->type = DiffString::SIMILAR;
                 } elseif ($most_similar['percent'] >= self::MODIFIED_PERCENT) {
                     $str->type = DiffString::MODIFIED;
-                    $str->oldData = $strings1[$most_similar['index']];
+                    $str->oldData = $s1;
                 }
             }
         }
