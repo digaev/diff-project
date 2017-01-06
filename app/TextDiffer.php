@@ -47,7 +47,7 @@ class TextDiffer
         foreach ($strings1 as $i => $s1) {
             $most_similar = [
                 'index' => -1,
-                'percent' => 0
+                'percent' => 0,
             ];
 
             foreach ($result as $j => $str) {
@@ -71,7 +71,7 @@ class TextDiffer
                     $str->type = DiffString::SIMILAR;
                 } elseif ($most_similar['percent'] >= self::MODIFIED_PERCENT) {
                     $str->type = DiffString::MODIFIED;
-                    $str->oldData = $s1;
+                    $str->oldData = $strings1[$most_similar['index']];
                 }
             }
         }
