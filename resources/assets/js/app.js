@@ -7,14 +7,17 @@
 
 require('./bootstrap')
 var $ = require('jquery')
-// var angular = require('angular')
-
-// angular.module('diffApp', [])
-
-// require('./components')
 
 $(function () {
   'use strict'
+
+  var modifiedHoverHandler = function (p, s) {
+    p.hover(function () {
+      $(this).text(s.oldData)
+    }, function () {
+      $(this).text(s.data)
+    })
+  }
 
   var form = $('#diff-form')
   form.submit(function (e) {
@@ -31,6 +34,7 @@ $(function () {
             break
           case 2: // modified
             p.addClass('yellow')
+            modifiedHoverHandler(p, s)
             break
           case 3: // inserted
             p.addClass('green')
