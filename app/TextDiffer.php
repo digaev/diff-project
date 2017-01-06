@@ -82,7 +82,6 @@ class TextDiffer
             }
         }
 
-        // error_log(print_r($result, true));
         return $result;
     }
 
