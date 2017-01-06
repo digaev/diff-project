@@ -12,11 +12,13 @@ $(function () {
   'use strict'
 
   var modifiedHoverHandler = function (p, s) {
-    p.hover(function () {
-      $(this).text(s.oldData)
-    }, function () {
-      $(this).text(s.data)
-    })
+    (function (p, s) {
+      p.hover(function () {
+        $(this).text(s.oldData)
+      }, function () {
+        $(this).text(s.data)
+      })
+    })(p, s)
   }
 
   var form = $('#diff-form')
