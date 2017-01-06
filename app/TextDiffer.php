@@ -60,7 +60,7 @@ class TextDiffer
                     $most_similar['index'] = $j;
                     $most_similar['percent'] = $percent;
 
-                    if ($percent === 100) {
+                    if ($percent === 100.0) {
                         break;
                     }
                 }
