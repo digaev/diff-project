@@ -6,6 +6,3 @@
 * yarn run dev
 * php artisan serve
 
-## Demo
-
-![demo](/public/diff.jpg)
